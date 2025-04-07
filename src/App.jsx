@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [politicians, setPoliticians] = useState([]);
@@ -17,11 +16,14 @@ function App() {
       });
   }, []);
 
-  // Funzione per filtrare i politici in base al termine di ricerca
-  const filteredPoliticians = politicians.filter((p) =>
-    p.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.biography?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // fn per filtrare i politici
+  const filteredPoliticians = useMemo(() => {
+    return politicians.filter((p) =>
+    (p.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.biography?.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  }, [politicians, searchTerm]);
+
 
   return (
     <div className="container my-5">
