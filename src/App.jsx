@@ -2,22 +2,22 @@ import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 
 
-const PoliticianCard = ({ name, image, position, biography }) => {
-  console.log("Card")
-  return <div className="col-sm-6 col-md-4 col-lg-3">
-    <div className="card h-100 shadow-sm">
-      <img src={image} className="card-img-top" alt={name} />
-      <div className="card-body d-flex flex-column">
-        <h5 className="card-title">{name}</h5>
-        <h6 className="card-subtitle mb-2 text-muted">{position}</h6>
-        <p className="card-text mt-2">{biography}</p>
+const PoliticianCard = React.memo(({ name, image, position, biography }) => {
+  console.log("Card");
+  return (
+    <div className="col-sm-6 col-md-4 col-lg-3">
+      <div className="card h-100 shadow-sm">
+        <img src={image} className="card-img-top" alt={name} />
+        <div className="card-body d-flex flex-column">
+          <h5 className="card-title">{name}</h5>
+          <h6 className="card-subtitle mb-2 text-muted">{position}</h6>
+          <p className="card-text mt-2">{biography}</p>
+        </div>
       </div>
     </div>
-  </div>
+  );
+});
 
-}
-
-const PoliticianCardMemo = React.memo(PoliticianCard)
 
 
 
