@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 
-
 const PoliticianCard = React.memo(({ name, image, position, biography }) => {
   console.log("Card");
   return (
@@ -17,9 +16,6 @@ const PoliticianCard = React.memo(({ name, image, position, biography }) => {
     </div>
   );
 });
-
-
-
 
 function App() {
   const [politicians, setPoliticians] = useState([]);
@@ -44,7 +40,6 @@ function App() {
     );
   }, [politicians, searchTerm]);
 
-
   return (
     <div className="container my-5">
       <h1 className="text-center mb-4">Politici</h1>
@@ -65,7 +60,7 @@ function App() {
       <div className="row gy-4">
         {filteredPoliticians.length > 0 ? (
           filteredPoliticians.map((p) => (
-            <PoliticianCardMemo
+            <PoliticianCard
               key={p.id}
               {...p}
             />
@@ -74,7 +69,6 @@ function App() {
           <p className="text-center">Nessun politico trovato.</p>
         )}
       </div>
-
     </div>
   );
 }
